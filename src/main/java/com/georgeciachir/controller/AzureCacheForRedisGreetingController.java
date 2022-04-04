@@ -30,6 +30,7 @@ public class AzureCacheForRedisGreetingController {
         String key = "greeting " + name;
         if (template.hasKey(key)) {
             LOG.info("Retrieving data from the cache");
+
             return ops.get(key);
         }
 
