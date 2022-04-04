@@ -27,7 +27,9 @@ CDNs' store cached content on edge servers in point-of-presence (POP) locations 
   - Azure CDN Standard from Verizon
   - Azure CDN Premium from Verizon
 
-With the Azure CDN Standard for Microsoft Tier, caching rules are as simple as the following three options:
+
+## **Azure CDN Standard for Microsoft Tier**
+### Caching rules (in the endpoint menu)
 - **Ignore query strings**. This option is the default mode. A CDN POP simply passes the request and any query strings directly 
   to the origin server on the first request and caches the asset. New requests for the same asset will ignore any query 
   strings until the TTL expires
@@ -35,12 +37,20 @@ With the Azure CDN Standard for Microsoft Tier, caching rules are as simple as t
 - **Cache every unique URL**. Every time a requesting client generates a unique URL, that URL is passed back to the origin 
   server and the response cached with its own TTL. This final method is inefficient where each request is a unique URL, 
   as the cache-hit ratio becomes low
+### Rules engine (in the endpoint menu)
+- Although this tier does not have complex caching rules, it has a **Rules engine** based on various elements of the
+  request (headers, query strings, path, method, body and so on...), which is very powerful
 
-Other tiers provide additional configuration options, which include:
-- **Caching rule**s. Caching rules can be either global (apply to all content from a specified endpoint) or custom. Custom 
-  rules apply to specific paths and file extensions
-- **Query string caching**. Query string caching enables you to configure how Azure CDN responds to a query string. Query 
-  string caching has no effect on files that can't be cached
+
+## **Other tiers such as Azure CDN Standard for Verizon os Azure Standard for Akamai**
+### Caching rules (in the endpoint menu)
+- **Global caching rules**
+  - Caching rules can be either global (apply to all content from a specified endpoint) or custom
+  - Custom rules apply to specific paths and file extensions
+- **Query string caching**
+  - Query string caching enables you to configure how Azure CDN responds to a query string. 
+  - Query string caching has no effect on files that can't be cached
+### These tiers do not have a RRules engine
 
 If you don't set a TTL on a file, Azure CDN sets a default value. However, this default may be overridden if you have 
 set up caching rules in Azure. Default TTL values are as follows:
