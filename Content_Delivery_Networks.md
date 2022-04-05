@@ -42,15 +42,26 @@ CDNs' store cached content on edge servers in point-of-presence (POP) locations 
   request (headers, query strings, path, method, body and so on...), which is very powerful
 
 
-## **Other tiers such as Azure CDN Standard for Verizon os Azure Standard for Akamai**
+## **Azure CDN Standard for Verizon** and **Azure Standard for Akamai**
 ### Caching rules (in the endpoint menu)
 - **Global caching rules**
   - Caching rules can be either global (apply to all content from a specified endpoint) or custom
   - Custom rules apply to specific paths and file extensions
+  - These are:
+    - **Bypass cache** -> obvious
+    - **Override** -> always override the TTL specified in the response headers with a value defined in Azure
+    - **Set if missing** -> set a specified TTL in Azure, if there is no TTL specified in  the response headers
+    - **Not set** -> use only the TTL value specified in the response headers, only if they're present 
 - **Query string caching**
   - Query string caching enables you to configure how Azure CDN responds to a query string. 
   - Query string caching has no effect on files that can't be cached
-### These tiers do not have a RRules engine
+### These tiers do not have a Rules engine
+  
+## **Azure CDN Premium for Verizon**
+### Caching rules (in the endpoint menu)
+?
+### Rules engine (in the endpoint menu)
+It has a **Rules engine**
 
 If you don't set a TTL on a file, Azure CDN sets a default value. However, this default may be overridden if you have 
 set up caching rules in Azure. Default TTL values are as follows:
