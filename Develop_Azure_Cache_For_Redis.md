@@ -74,7 +74,7 @@ Azure Cache for Redis offers:
     - **allkeys-lru** - even items that don't have a TTL, least recently used
     - **noeviction** - obvious
     - **volatile-random** - anything that has a TTL and is considered volatile
-    - **allkeys-random** - anything in the cache (including non TTL items) and is considered volatile
+    - **allkeys-random** - anything in the cache (including non TTL items)
     - **volatile-ttl** - remove based on the smallest remaining TTL
 
 ## Best practices
