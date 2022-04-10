@@ -70,12 +70,12 @@ Azure Cache for Redis offers:
 - cache eviction 
   - basically, when the cache is full, it needs to remove entries, so that it can continue working
   - eviction policies:
-    - **volatile-lru** - items that have a TTL, least recently used. It is the **default policy**
-    - **allkeys-lru** - even items that don't have a TTL, least recently used
+    - **volatile-lru** - remove items that have a TTL, least recently used. It is the **default policy**
+    - **allkeys-lru** - remove even items that don't have a TTL, least recently used
     - **noeviction** - obvious
-    - **volatile-random** - anything that has a TTL and is considered volatile
-    - **allkeys-random** - anything in the cache (including non TTL items)
-    - **volatile-ttl** - remove based on the smallest remaining TTL
+    - **volatile-random** - randomly remove items that have a TTL and are considered volatile
+    - **allkeys-random** - randomly remove anything in the cache (including non TTL items)
+    - **volatile-ttl** - remove items that are volatile, based on the smallest remaining TTL
 
 ## Best practices
 - set the maxmemory-reserved setting - in case you're doing lots of writes. The documentation recommends to start with 10% of the cache
