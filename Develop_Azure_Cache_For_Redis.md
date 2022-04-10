@@ -9,7 +9,7 @@ Azure Cache for Redis offers:
 ![img_1.png](img_1.png)
 
 ## Configure Azure Cache for Redis
-- Put the Redis cache as close to the data consumer as you can.
+- Put the Redis cache as close to the data consumer as you can
 - Three pricing tiers available for an Azure Cache for Redis:
   - **Basic**: 
     - Basic cache ideal for development/testing
@@ -25,12 +25,20 @@ Azure Cache for Redis offers:
       cache support
     - 99.95% availability
     - low latency
-    - up to 530 GB of memory and 40,000 **simultaneous** connections
-  - **Enterprise**
+    - up to 1.2 TB of memory and 40,000 **simultaneous** connections
+  - **Enterprise** -> yes, some of the numbers are higher than the Enterprise flash
     - 99.99% availability
-  - **Enterprise flash**
+    - support for Redis time series, Redis search and Redis bloom
+    - suports active geo-replication instead of just passive
+    - up to 14 TB for cache size
+    - up to 2000K **simultaneous** connections
+  - **Enterprise flash** -> yes, some of the numbers are smaller than the Enterprise tier
     - 99.99% availability
+    - **does not support** for Redis time series, Redis search and Redis bloom
     - fast non-volatile storage
+    - up to 14 TB for cache size
+    - up to 150K **simultaneous** connections
+- Redis cache uses encryption by default
 - You can scale from Basic to Standard to Premium etc..., but you can't scale down
 - You can control the amount of cache memory available on each tier by choosing a cache level 
   from C0-C6 for Basic/Standard and P0-P4 for Premium
@@ -59,15 +67,28 @@ Azure Cache for Redis offers:
   - The expire time resolution is always 1 millisecond
   - Information about expires are replicated and persisted on disk, the time virtually passes when your Redis server 
     remains stopped (this means that Redis saves the date at which a key will expire)
+- cache eviction 
+  - basically, when the cache is full, it needs to remove entries, so that it can continue working
+  - eviction policies:
+    - **volatile-lru** - items that have a TTL, least recently used. It is the **default policy**
+    - **allkeys-lru** - even items that don't have a TTL, least recently used
+    - **noeviction** - obvious
+    - **volatile-random** - anything that has a TTL and is considered volatile
+    - **allkeys-random** - anything in the cache (including non TTL items) and is considered volatile
+    - **volatile-ttl**
 
 ## Best practices
+- set the maxmemory-reserved setting - in case you're doing lots of writes. The documentation recommends to start with 10% of the cache
+- reuse client connections
+- use Redis pipelining
+- try to store smaller values - break apart large data into smaller parts - better performance for the cluster
 - set expiry times to manage content lifetime
 - add jitter to spread database load
 - avoid caching large objects
 - host redis as close as possible to your application
 
 ## Caching patterns
-- Cache aside pattern 
+- Cache aside pattern (Database caching)
   - classic caching
 - Content caching pattern
   - similar to CDN
@@ -84,4 +105,3 @@ Azure Cache for Redis offers:
   - number of requests to the cache
   - cache expiration policy
 - use the Redis benchmark utility that allows to simulate load on a Redis cache `Redis-benchmark -q -n -1000`
-- 

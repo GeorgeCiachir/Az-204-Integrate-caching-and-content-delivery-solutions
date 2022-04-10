@@ -67,7 +67,7 @@ If you don't set a TTL on a file, Azure CDN sets a default value. However, this 
 set up caching rules in Azure. Default TTL values are as follows:
 - Generalized web delivery optimizations: seven days
 - Large file optimizations: one day
-- Media streaming optimizations: one year
+- Media streaming optimizations: one **year**
 
 You can purge cached content from the edge nodes, which refreshes the content on the next client request. You might purge 
 cached content when publishing a new version of a web app or to replace any out-of-date assets.
