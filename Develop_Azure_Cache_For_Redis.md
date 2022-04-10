@@ -75,7 +75,7 @@ Azure Cache for Redis offers:
     - **noeviction** - obvious
     - **volatile-random** - anything that has a TTL and is considered volatile
     - **allkeys-random** - anything in the cache (including non TTL items) and is considered volatile
-    - **volatile-ttl**
+    - **volatile-ttl** - remove based on the smallest remaining TTL
 
 ## Best practices
 - set the maxmemory-reserved setting - in case you're doing lots of writes. The documentation recommends to start with 10% of the cache
